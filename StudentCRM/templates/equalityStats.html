@@ -1,0 +1,459 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+    <!-- checked on w3c validator, error free -->
+        <div class="container complete_form_container">
+
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-5">
+                    <button type="button" class="btn btn-info hidden-print" onclick="window.print()"><span class="glyphicon glyphicon-print"></span> Print This Page</button>
+                </div>
+            </div>
+
+            <div class="row logos hidden-print">
+                <div class="col-lg-3">
+                    <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+                </div>
+                <div class="col-lg-3 col-lg-offset-4">
+                    <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+                alt= "European and Scotland Funded">
+                </div>
+            </div>
+
+            <h2 class="header_no_bg">Graduate Apprenticeships</h2>
+            <h2 class="header_no_bg">Equality Monitoring Form Data</h2>
+
+            <!-- this is where selected year is printed -->
+            <h3 class="header_no_bg bottom">Year: {{ year }}</h3>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <h4>Please select a year to view data</h4>
+                </div>
+                <div class="col-sm-4 offset-col-sm-3">
+                    <select class="form-control" onchange="location = this.options[this.selectedIndex].value;">
+                      <option>Please select year</option>
+                      {% for year in years %}
+                        <option value="/equalityStats/{{ year }}">
+                          {{year}}
+                        </option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+
+            <h3 class="spaced">Please tick the University or College you are registered with</h3>
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="opt">Edinburgh Napier University</td>
+                        <td class="tick_select">X</td>
+                        <td class="opt">Robert Gordon University</td>
+                        <td class="tick"></td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Glasgow Caledonian University</td>
+                        <td class="tick"></td>
+                        <td class="opt">University of Dundee</td>
+                        <td class="tick"></td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Glasgow Kelvin College</td>
+                        <td class="tick"></td>
+                        <td class="opt">University of Glasgow</td>
+                        <td class="tick"></td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Heriot Watt University</td>
+                        <td class="tick"></td>
+                        <td class="opt">University of Strathclyde</td>
+                        <td class="tick"></td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Open University</td>
+                        <td class="tick"></td>
+                        <td class="opt">University of the Highlands and Islands</td>
+                        <td class="tick"></td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Queen Margaret University</td>
+                        <td class="tick"></td>
+                        <td class="opt">University of the West of Scotland </td>
+                        <td class="tick"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="spaced">Please tick the course you are registered on</h3>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="opt">Construction and the Built Environment</td>
+                        <td class="tick">{{ degree[0] }}</td>
+                        <td class="opt">IT: Management for Business</td>
+                        <td class="tick">{{ degree[1]  }}</td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Civil Engineering (SCQF 8)</td>
+                        <td class="tick">{{ degree[2] }}</td>
+                        <td class="opt">IT: Software Development</td>
+                        <td class="tick">{{ degree[3]  }}</td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Civil Engineering (SCQF 10)</td>
+                        <td class="tick">{{ degree[4] }}</td>
+                        <td class="opt">Cyber Security (SCQF 10)</td>
+                        <td class="tick">{{ degree[5] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Engineering: Design and Manufacture</td>
+                        <td class="tick">{{ degree[6] }}</td>
+                        <td class="opt">Cyber Security (SCQF 11)</td>
+                        <td class="tick">{{ degree[7] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Engineering: Instrumentation, Measurement and Control</td>
+                        <td class="tick">{{ degree[8] }}</td>
+                        <td class="opt">Business Management</td>
+                        <td class="tick">{{ degree[9] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="opt">Business Management: Financial Services</td>
+                        <td class="tick">{{ degree[10] }}</td>
+                        <td class="opt"></td>
+                        <td class="tick opt"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="spaced">1. Ethnic Group</h3>
+
+            <p>Please read the list below and tick the box that most closely describes you.</p>
+
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg">White</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Scottish</td>
+                        <td class="tick">{{ ethnic[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other British</td>
+                        <td class="tick">{{ ethnic[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Irish</td>
+                        <td class="tick">{{ ethnic[2] }}</td>
+                    </tr>
+                    <tr>
+                        <td>White background</td>
+                        <td class="tick">{{ ethnic[3] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Ethnic background</td>
+                        <td class="tick">{{ ethnic[4] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg">Asian, includes Asian Scottish and Asian British</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Pakistani</td>
+                        <td class="tick">{{ ethnic[5] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Indian</td>
+                        <td class="tick">{{ ethnic[6] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bangladeshi </td>
+                        <td class="tick">{{ ethnic[7] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Chinese</td>
+                        <td class="tick">{{ ethnic[8] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other Asian Background</td>
+                        <td class="tick">{{ ethnic[9] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg">Black, includes Black Scottish & Black British</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>African</td>
+                        <td class="tick">{{ ethnic[10] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Caribbean</td>
+                        <td class="tick">{{ ethnic[11] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other black background</td>
+                        <td class="tick">{{ ethnic[12] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Other ethnic background</td>
+                        <td class="tick">{{ ethnic[13] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Prefer not to say</td>
+                        <td class="tick">{{ ethnic[14] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="bold">Not known</td>
+                        <td class="tick">{{ ethnic[15] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Religion or Belief</h3>
+
+            <p>Please indicate your religion or belief from the following options</p>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>None</td>
+                        <td class="tick">{{ religion[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Church of Scotland</td>
+                        <td class="tick">{{ religion[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Roman Catholic</td>
+                        <td class="tick">{{ religion[2] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other Christian</td>
+                        <td class="tick">{{ religion[3] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Muslim</td>
+                        <td class="tick">{{ religion[4] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Buddhist</td>
+                        <td class="tick">{{ religion[5] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sikh</td>
+                        <td class="tick">{{ religion[6] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Jewish</td>
+                        <td class="tick">{{ religion[7] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Hindu</td>
+                        <td class="tick">{{ religion[8] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pagan</td>
+                        <td class="tick">{{ religion[9] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td class="tick">{{ religion[10] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prefer not to say</td>
+                        <td class="tick">{{ religion[11] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. Transgender</h3>
+
+            <p>Have you ever identified as transgender?</p>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Yes</td>
+                        <td class="tick">{{ transgender[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>No</td>
+                        <td class="tick">{{ transgender[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prefer not to say</td>
+                        <td class="tick">{{ transgender[2] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4. Sexual Orientation</h3>
+
+            <p>Do you consider yourself to be?</p>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Heterosexual/ Straight</td>
+                        <td class="tick">{{ sexual_orientation[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gay/ Lesbian</td>
+                        <td class="tick">{{ sexual_orientation[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bisexual</td>
+                        <td class="tick">{{ sexual_orientation[2] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td class="tick">{{ sexual_orientation[3] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prefer not to say</td>
+                        <td class="tick">{{ sexual_orientation[4] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>5. Care Experience</h3>
+
+            <p>Have you ever been in care?*</p>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Yes</td>
+                        <td class="tick">{{ care_experience[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>No</td>
+                        <td class="tick">{{ care_experience[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prefer not to say</td>
+                        <td class="tick">{{ care_experience[2] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><br>* In care means you are or were formally looked after by a local authority, in the family home
+                (with support from social services or a social worker) or elsewhere, for example, in foster care,
+                residential/secure care, or kinship care (with family friends or relatives).</p>
+
+            <!-- Section A ends -->
+
+
+            <!-- Section B begins-->
+
+            <h3 class="teal">Section B</h3>
+
+            <h3>1. Gender</h3>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Male</td>
+                        <td class="tick">{{ gender[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Female</td>
+                        <td class="tick">{{ gender[1] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>2. Disability</h3>
+
+            <p>The information you provide in this section will help us provide an inclusive environment for disabled people,
+                by identifying and removing barriers in our practices.</p>
+
+            <p class="spaced">1. Do you have an impairment, health condition or learning difficulty?* </p>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Yes</td>
+                        <td class="tick">{{ disability[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>No</td>
+                        <td class="tick">{{ disability[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prefer not to say</td>
+                        <td class="tick">{{ disability[2] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>*lasting or expected to last 12 months or more</p>
+
+            <p class="spaced">2. If you have an impairment, health condition or learning difficulty, please select all those on the list that apply.</p>
+
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>You have a social/communication impairment such as a speech and language impairment or Asperger’s
+                            syndrome/other autistic spectrum disorder, or cognitive impairment</td>
+                        <td class="tick">{{ otherDis[0] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You are blind or have a visual impairment uncorrected by glasses</td>
+                        <td class="tick">{{ otherDis[1] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You are deaf or have a hearing impairment</td>
+                        <td class="tick">{{ otherDis[2] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You have a long standing illness or health condition such as cancer, HIV, diabetes, chronic heart
+                            disease, or epilepsy</td>
+                        <td class="tick">{{ otherDis[3] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You have a mental health difficulty, such as depression, schizophrenia or anxiety disorder</td>
+                        <td class="tick">{{ otherDis[4] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You have a specific learning difficulty such as dyslexia, dyspraxia or AD(H)D</td>
+                        <td class="tick">{{ otherDis[5] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You have a physical impairment or mobility issues, such as difficulty using your arms or using a
+                            wheelchair or crutches</td>
+                        <td class="tick">{{ otherDis[6] }}</td>
+                    </tr>
+                    <tr>
+                        <td>You have a disability, impairment or medical condition that is not listed above</td>
+                        <td class="tick">{{ otherDis[7] }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prefer not to say</td>
+                        <td class="tick">{{ otherDis[8] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End section B-->
+
+
+        </div><!-- close container -->
+{% endblock %}

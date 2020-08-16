@@ -1,0 +1,88 @@
+
+{% extends "template.html" %}
+{% block content %}
+
+
+
+
+    <div class="container form_container">
+        <div class="row top">
+            <div class="col-sm-6">
+                <a class="breadcrumbs" href="https://www.napier.ac.uk">Home </a><span class="glyphicon glyphicon-play"></span>
+
+                <a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us"> Study with us </a><span class="glyphicon glyphicon-play"></span>
+
+                <a class="breadcrumbs" href="{{ url_for('home') }}"> Graduate Apprenticeship </a><span class="glyphicon glyphicon-play"></span>
+
+                <a class="breadcrumbs" href="#"><!-- this actually stays as '#' --> Progress</a>
+            </div>
+    
+            <div class="col-sm-3 right">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                    <img class="share_icon" src="../static/images/fbLogo.png" alt="facebook share icon">
+                </a>
+
+                <a href="https://twitter.com/intent/tweet?url=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                    <img class="share_icon" src="../static/images/twitterLogo.png" alt="twitter share icon">
+                </a>
+
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.napier.ac.uk%3A443%2Fstudy-with-us%2Fapprenticeships%2Fbecome-an-apprentice">
+                    <img class="share_icon" src="../static/images/lnLogo.png" alt="linkedin share icon">
+                </a>
+
+                <a href="mailto:ga@napier.ac.uk.?subject=apprenticeshipscheme">
+                    <img class="share_icon" src="../static/images/mailLogo.png" alt="mail share icon">
+                </a>
+            </div>
+        </div>
+        <h3>
+            Graduate Apprenticeship Programme <br> Progress Form
+        </h3>
+
+
+            <h3 class="blueBanner">Apprentice's Progress in the workplace</h3>
+
+
+            <div class="form-group">
+              <form action="" method="post">
+              {{ form.hidden_tag() }}
+              {{ form.csrf_token }}
+                    <p>
+                        {{ form.question_1.label }}<br>
+                        {% if request.method == 'POST' %}
+                        {% for error in form.question_1.errors %}
+                        <span class="errors">[{{ error }}]</span>
+                        {% endfor %}
+                        {% endif %}
+                        {{ form.question_1(class="form-control",  rows="5") }}
+                    </p>
+                    <p>
+                        {{ form.question_2.label }}<br>
+                        {% if request.method == 'POST' %}
+                        {% for error in form.question_2.errors %}
+                        <span class="errors">[{{ error }}]</span>
+                        {% endfor %}
+                        {% endif %}
+                        {{ form.question_2(class="form-control",  rows="5") }}
+                    </p>
+
+                    <label for="signDate">Date (DD/MM/YYYY)</label>
+                    <input type="text" class="form-control no_choice" id="signDate" value= {{ date.strftime('%m/%d/%Y') }} readonly>
+                    <h4>Employers signature</h4>
+                    <p>Add my previously stored signature to complete this form</p>
+                    {{ form.submit(class="btn btn-danger")}}
+
+              </form>
+            </div>
+
+        <div class="row logos">
+        <div class="col-md-3">
+            <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+            <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+            alt= "European and Scotland Funded">
+        </div>
+        </div>
+    </div>
+{% endblock %}

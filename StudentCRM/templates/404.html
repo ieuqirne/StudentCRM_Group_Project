@@ -1,0 +1,18 @@
+{% extends "template.html" %}
+{% block content %}
+
+        <div class ="container form_container">
+            <h3>Sorry, we couldn't find that page.</h3>
+
+            <p>We've recently relaunched our website, so some things may not be where they used to be.</p>
+
+            <h3>Here is what you can do:</h3>
+            <ul>
+                <li>Check you typed the address correctly.</li>
+                <li>Go back to your previous page, using the back button on your browser.</li>
+                <li>Let us take you<a href="{{ url_for('home') }}"> back.</a></li>
+            </ul>
+            <p>Need further Help? <a href="https://staff.napier.ac.uk/services/cit/Pages/info-services.aspx">Contact IT Support</a></p>
+        </div>
+
+{% endblock %}

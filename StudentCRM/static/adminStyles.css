@@ -1,0 +1,377 @@
+/* CSS for Admin */
+
+.html {
+    min-height: 800px;
+}
+
+.adminHeader{
+    background-color: #333333;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.admin_container {
+    max-width: 1100px;
+    font-family: 'Titillium Web', sans-serif;
+    color: #333333;
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+.menu_logo {
+    max-height: 50px;
+    width: auto;
+}
+
+a.admin_menu_link {
+    color: #FFF;
+    float:right;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+a.admin_menu_link:active, a.admin_menu_link:hover {
+    text-decoration: none;
+    color: #377F98;
+    text-decoration: underline;
+}
+
+.breadcrumbs {
+    color: #333333;
+}
+
+a {
+    color: #377F98;
+    text-decoration: underline;
+}
+
+a:active, a:hover {
+    text-decoration: none;
+}
+
+
+.glyphicon {
+    color: #FFF;
+}
+
+span.glyphicon.glyphicon-eye-open{
+    color: #377F98;
+}
+
+span.glyphicon.glyphicon-backward {
+    color: #333333;
+}
+
+.right {
+    float: right;
+}
+
+.orderBy {
+    margin-bottom: 20px;
+}
+
+.admin_footer {
+    background-color: #333333;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 50px;
+}
+
+.admin_footer_link {
+    color: #FFF;
+    padding-left: 20px;
+}
+
+.head_blue_bg {
+    background:#004A6C;
+    color:#fff;
+    font-size: 18px;
+    padding: 5px 0 5px 5px;
+    width:100%;
+}
+
+.form-control{
+    margin-bottom:20px;
+}
+
+input#submit {
+    background-color: #c31532;
+    margin-top: 30px;
+}
+
+/*These are used to hid and show more form fields in the registartion page*/
+#hidden-qualifations{
+    display: none;
+}
+#moreQualifications {
+    display: block;
+}
+
+/* flash messages */
+
+.flash_message {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Titillium Web', sans-serif;
+    color: #333333;
+    font-weight: 400;
+    font-size: 16px;
+    width: 100%;
+}
+
+a.btn.btn-primary.reminder {
+    padding: 4px;
+    margin: -5px;
+}
+
+/* CSS for completed forms, ready for printing */
+
+.eu_logo {
+    max-width: 320px;
+    height: auto;
+    margin-top: 5px;
+}
+
+.logos {
+    padding-top: 20px;
+}
+
+.complete_form_container {
+    max-width: 900px;
+    margin-bottom: 60px;
+}
+
+.content_head {
+    background-color: #02B9BF;
+    color: #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: -5px;
+    line-height: 1.5; 
+    }
+
+.lighter_font_weight {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.lighter_header {
+    font-weight: 200;
+}
+    
+.complete_form_container {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+   border: 1px solid #000000;
+   
+}
+
+.table-bordered > thead {
+    background-color: #f2f2f2;
+}
+
+.table>thead:first-child>tr:first-child>th {
+    border-top: 1px solid #000000;
+}
+
+.table-bordered {
+    margin-bottom: -1px;
+}
+
+.white_bg {
+    background-color: #FFFFFF;
+}
+
+.half_width {
+    width: 50%;
+}
+
+.fifth-width {
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+}
+
+.sixty {
+    width: 60%;
+}
+
+.seventy {
+    width: 70%;
+}
+
+.eight {
+    width: 8%;
+    text-align: center;
+    font-weight: 200;
+}
+
+.opt {
+    background-color: #f2f2f2;
+    width: 45%;
+}
+
+.table>tbody>tr>td {
+    height: 40px;
+}
+
+.tick {
+    width: 5%;
+    text-align: center;
+}
+
+.tick_select {
+    font-weight: 600;
+    text-align: center;
+}
+
+.red_info {
+    color: red;
+}
+
+.header_no_bg {
+    color: #02B9BF;
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.teal {
+    color: #065c70;
+    margin-top: 50px;
+}
+
+.spaced {
+    margin-top: 50px;
+}
+
+p.login_para {
+    margin-top: 20px;
+}
+
+
+.centred {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+}
+
+.bottom {
+    margin-bottom: 30px;
+}
+
+/* Privacy styles */
+
+#topBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 144px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: red; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 14px; /* Increase font size */
+}
+
+#topBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+label {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
+}
+
+
+.login_body{
+    background-image:url(../static/images/bg.jpg);    
+	height: 100vh;
+}
+
+.login{
+    background:#fff;
+    font-family: 'Titillium Web', sans-serif;
+    border-radius: 0px 0px 10px 10px;
+    padding:53px;
+}
+
+.blueBanner{
+    background:#004A6C;
+    color: #fff;
+    padding: 5px 0 5px 5px;
+    width: 100%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 98% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 0% 100%);
+}
+
+/*This is the text that appears in the top section of the admin login*/
+.heading{
+    font-family: 'Titillium Web', sans-serif;
+    background:#004A6C;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+    font-size:18px;    
+    margin-top: 3%;
+    padding:5px;
+}
+
+.errors{
+    color: red;
+    font-family: 'Titillium Web', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.no_choice {
+    background-color: #F7F7F7;
+}
+
+.row.gray.subject {
+    margin-left: -25px;
+
+}
+
+
+.gray.text {
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+}
+
+
+
+.gray{
+    background: #F7F7F7;
+    padding: 10px 0 10px 10px;
+
+}
+
+.white {
+    margin-top: 20px;
+}

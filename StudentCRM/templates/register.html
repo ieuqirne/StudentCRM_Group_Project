@@ -1,0 +1,450 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class="container form_container">
+
+    <div class="row top">
+
+        <div class="col-sm-6">
+            <a class="breadcrumbs" href="https://www.napier.ac.uk">Home </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us"> Study with us </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="{{ url_for('home') }}"> Graduate Apprenticeship </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="#"><!-- this actually stays as '#' --> Register</a>
+        </div>
+
+        <div class="col-sm-3 right">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                <img class="share_icon" src="../static/images/fbLogo.png" alt="facebook share icon">
+            </a>
+
+            <a href="https://twitter.com/intent/tweet?url=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                <img class="share_icon" src="../static/images/twitterLogo.png" alt="twitter share icon">
+            </a>
+
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.napier.ac.uk%3A443%2Fstudy-with-us%2Fapprenticeships%2Fbecome-an-apprentice">
+                <img class="share_icon" src="../static/images/lnLogo.png" alt="linkedin share icon">
+            </a>
+
+            <a href="mailto:ga@napier.ac.uk.?subject=apprenticeshipscheme">
+                <img class="share_icon" src="static/images/mailLogo.png" alt="mail share icon">
+            </a>
+        </div>
+    </div>
+
+
+
+    <h2>
+        Graduate Apprenticeship Programme<br>
+        Participant Registration Form
+    </h2>
+
+
+    <h3 class="blueBanner">Section A - Personal Details</h3>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="NationalInsurance">National Insurance Number</label>
+            {{ form.hidden_tag() }} {{ form.csrf_token() }}
+            {% if request.method == 'POST' %}
+            {% for error in form.NationalInsurance.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.NationalInsurance(class="form-control") }}
+
+            <label for="DOB"> Date of Birth</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.dateOfBirth.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.dateOfBirth(class="form-control") }}
+
+            <label for="firstName">First Name</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.firstName.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.firstName(class="form-control") }}
+
+            <label for="lastName">Last Name</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.lastName.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.lastName(class="form-control") }}
+
+            <label for="emailAddress">Email Address</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.emailAddress.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.emailAddress(class="form-control") }}
+
+            <label for="contactNumber">Contact Telephone Number</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.contactNumber.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.contactNumber(class="form-control") }}
+
+            <label for="fLineAddress">First Line of Address</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.fLineAddress.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.fLineAddress(class="form-control") }}
+
+            <label for="sLineAddress">Second Line of Address</label>
+
+            {{ form.sLineAddress(class="form-control") }}
+
+            <label for="townCity">Town or City</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.townCity.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.townCity(class="form-control") }}
+
+            <label for="postcode">Postcode</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.postcode.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.postcode(class="form-control") }}
+        </div>
+
+
+        <h3 class="blueBanner">Section B - Course Details</h3>
+
+        <div class="form-group">
+            <label for="selectUni">Please select the University or College you are registered with</label>
+            <select class="form-control no_choice" id="selectUni">
+                <option>Edinburgh Napier University</option>
+            </select>
+
+            <label for="selectCourse">Please select your course</label>
+            {{ form.selectCourse(class="form-control") }}
+
+            <label for="startDate">Course Start Date</label>
+            {{ form.startDate(class="form-control no_choice") }}
+
+            <label for="entryLevel">Apprenticeship Year Entry</label>
+            {{ form.entryLevel(class="form-control") }}
+
+            <label for="courseLength">Course Length</label>
+            {{ form.courseLength(class="form-control") }}
+        </div>
+
+
+        <h3 class="blueBanner">Section C - Employment Details</h3>
+        <div class="gray text">
+            <p>ESF funding requires evidence of employment status. We will contact your employer (using the email address you provide)
+                to confirm your status as employed and the start date of your employment.</p>
+            <p>Failure to complete Section C of this form will require proof of employment such as copy of Contract of employment or Wage Slip.</p>
+        </div>
+        <label for="employerFirstName">Employer First Name</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerFirstName.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerFirstName(class="form-control") }}
+
+        <label for="employerSecondName">Employer Last Name</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerSurname.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerSurname(class="form-control") }}
+
+        <label for="employerEmailAddress">Employer Email Address</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerEmail.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerEmail(class="form-control") }}
+
+        <label for="employmentStartDate">Employment Start Date (DD/MM/YYYY)</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employmentStartDate.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employmentStartDate(class="form-control") }}
+
+        <label for="employerFAddress">Employer Address: First Line</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerFAddress.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerFAddress(class="form-control") }}
+
+        <label for="employerSAddress">Employer Address: Second Line</label>
+        {{ form.employerSAddress(class="form-control") }}
+
+        <label for="employerTownCity">Town or City</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerTownCity.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerTownCity(class="form-control") }}
+
+        <label for="employerPostcode">Postcode</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerPostcode.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerPostcode(class="form-control") }}
+
+        <label for="jobTitle">Job Title</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.jobTitle.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.jobTitle(class="form-control") }}
+
+        <h3 class="blueBanner">Section D - Learner's Achievements</h3>
+
+        <div class="row white">
+            <div class="col-lg-8">
+                <label for="subjectOne">Subject</label>
+                {{ form.subjectOne(class="form-control") }}
+            </div>
+            <div class="col-lg-2">
+                <label for="levelOne">Level</label>
+                {{ form.levelOne(class="form-control") }}
+            </div>
+            <div class="col-lg-2">
+                <label for="gradeOne">Grade</label>
+                {{ form.gradeOne(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="row gray subject">
+            <div class="col-lg-8">
+                <label for="subjectTwo">Subject</label>
+                {{ form.subjectTwo(class="form-control") }}
+            </div>
+            <div class="col-lg-2"><label for="levelTwo">Level</label>
+                {{ form.levelTwo(class="form-control") }}
+            </div>
+            <div class="col-lg-2"><label for="gradeTwo">Grade</label>
+                {{ form.gradeTwo(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="row white">
+            <div class="col-lg-8">
+                <label for="subjectThree">Subject</label>
+                {{ form.subjectThree(class="form-control") }}
+            </div>
+            <div class="col-lg-2">
+                <label for="levelThree">Level</label>
+                {{ form.levelThree(class="form-control") }}
+            </div>
+            <div class="col-lg-2">
+                <label for="gradeThree">Grade</label>
+                {{ form.gradeThree(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="row gray subject">
+            <div class="col-lg-8">
+                <label for="subjectFour">Subject</label>{{ form.subjectFour(class="form-control") }}
+            </div>
+            <div class="col-lg-2">
+                <label for="levelFour">Level</label>
+                {{ form.levelFour(class="form-control") }}
+            </div>
+            <div class="col-lg-2">
+                <label for="gradeFour">Grade</label>
+                {{ form.gradeFour(class="form-control") }}
+            </div>
+        </div>
+
+        <div id="hidden-qualifations">
+            <div class="row white">
+                <div class="col-lg-8">
+                    <label for="subjectFive">Subject</label>
+                    {{ form.subjectFive(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelFive">Level</label>
+                    {{ form.levelFive(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeFive">Grade</label>
+                    {{ form.gradeFive(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="row gray subject">
+                <div class="col-lg-8">
+                    <label for="subjectSix">Subject</label>
+                    {{ form.subjectSix(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelSix">Level</label>
+                    {{ form.levelSix(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeSix">Grade</label>
+                    {{ form.gradeSix(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="row white">
+                <div class="col-lg-8">
+                    <label for="subjectSeven">Subject</label>
+                    {{ form.subjectSeven(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelSeven">Level</label>
+                    {{ form.levelSeven(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeSeven">Grade</label>
+                    {{ form.gradeSeven(class="form-control") }}
+                </div>
+            </div>
+
+           <div class="row gray subject">
+                <div class="col-lg-8">
+                    <label for="subjectEight">Subject</label>
+                    {{ form.subjectEight(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelEight">Level</label>
+                    {{ form.levelEight(class="form-control") }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeEight">Grade</label>
+                    {{ form.gradeEight(class="form-control") }}
+                </div>
+                <br>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-primary" id="lessQualifications"><span class="glyphicon glyphicon-minus"></span> Less Qualifications</button>
+                </div>
+            </div>
+
+        </div>
+        <button class="btn btn-primary mt-20" type="button" id="moreQualifications"><span class="glyphicon glyphicon-plus"></span> Add More Qualifications</button>
+
+
+        <h3 class="blueBanner">Section E - Declaration</h3>
+
+        <div class="gray text">
+            <p>INFORMATION EXCHANGE ACKNOWLEDGEMENT AND CO-OPERATION AGREEMENT Elements of the Graduate Apprenticeship programme
+            are funded by The Skills Development Scotland Co Ltd ('SDS') and European Social Fund. It is necessary for information regarding
+            yourself as described in SDS’S Privacy Notice relating to the Graduate Apprenticeship Programme. (" Personal Information") to be
+            passed to SDS for the purposes set out in that Privacy Notice.</p>
+
+            <p>The information may be shared with other organisations in the manner described in that Privacy Notice We will not publish any of
+                your personal information outwith the terms of this Agreement or the GA Privacy Notice without your explicit and informed consent.</p>
+
+            <p>Participant’s Acknowledgement and Undertaking to SDS By agreeing to participate in the Programme, I confirm that I have read and
+                understood the contents of this Agreement and hereby:</p>
+            <p>(a) acknowledge that the Information identified in SDS’s Privacy Notice for the Graduate Apprenticeship Programme will be passed to
+                SDS and used in the manner identified in that Privacy Notice;</p>
+
+            <p>(b) undertake to co-operate with SDS and/or any of its partners or agents (referred to in the privacy notice) who may contact me to
+                assist SDS and/or its partners in the monitoring, audit and/or evaluation of the Programme and the assessment of the impact of the
+                Programme;</p>
+
+            <p>(c) undertake to co-operate fully with SDS (and/or SDS’s agents, as applicable) in response to any text or other message request for
+                information to enable SDS to validate learning provider claims for payment concerning my participation in the Programme;</p>
+
+            <p>(d) undertake to co-operate fully with SDS (and/or SDS’s agents, as applicable) in response to any reasonable request for information
+                concerning my participation in the Programme, to enable SDS to monitor learning provider compliance and quality assurance,
+                measure outcomes and to assist with policy development; and</p>
+
+            <p>(e) confirm that the details entered above or in any other information I may provide to any person in connection with my participation
+                in the Programme is/are correct.</p>
+        </div>
+
+        <p><label class="agreeCheckbox">
+                {{ form.termsAndConditionsCheck(class="agreeCheckbox") }}
+                I have read and accepted the Graduate Apprenticeship
+                <a target="blank" href="{{ url_for('privacy') }}">Privacy Statement</a>
+        </label></p>
+
+
+        <input type="text" class="form-control no_choice" id="signDate" value= {{ date.strftime('%m/%d/%Y') }} readonly>
+        <!-- <input type="text" class="form-control" id="signDate"> -->
+
+        <p>Please upload your signature to complete this form.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="apprenticeSignature" id="apprenticeSignature">Apprentice Signature</label>
+                {{ form.apprenticeSignature(class="btn btn-primary") }}
+            </div>
+        </div>
+
+        <p>Please upload your supporting documents below.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="proofOfId" id="proofOfId">Proof of ID</label>
+                {{ form.idProofImage(class="btn btn-primary") }}
+            </div>
+            <div class="col-md-4">
+                <label for="proofOfAddress" id="proofOfAddress">Proof of Address</label>
+                {{ form.addressProofImage(class="btn btn-primary", for="Qualifications") }}
+            </div>
+            <div class="col-md-4">
+                <label for="qualifications" id="qualifications">Qualifications form</label>
+                {{ form.qualificationProofImage(class="btn btn-primary") }}
+            </div>
+        </div>
+
+        {{ form.submit(class="btn btn-danger") }}
+
+    </form>
+
+    <div class="row logos">
+        <div class="col-md-3">
+            <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+            <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+            alt= "European and Scotland Funded">
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function more() {
+        document.getElementById("hidden-qualifations").style.display ="block";
+        document.getElementById("moreQualifications").style.display ="none";
+    }
+    function less() {
+        document.getElementById("hidden-qualifations").style.display ="none";
+        document.getElementById("moreQualifications").style.display ="block";
+    }
+
+    document.getElementById("moreQualifications").addEventListener("click", more);
+    document.getElementById("lessQualifications").addEventListener("click", less);
+</script>
+
+{% endblock %}

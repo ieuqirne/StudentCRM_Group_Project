@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+	{% if pageTitle %}
+		{{pageTitle}} |
+	{% endif %}
+	Graduate Apprenticeship Napier University
+	</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{url_for ('static', filename='bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{url_for ('static', filename='styles.css')}}">
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600" rel="stylesheet">
+</head>
+
+
+	<div class="container header">
+		<div class="blue">
+		</div>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3">
+			<div class="topText">
+
+				<!-- dropdown for forms (student only to view) -->
+				{% if whos == 'employer' %}
+				<li><a href="{{ url_for('progressemployer') }}">Progress Form</a></li>
+				{% endif %}
+				{% if whos == 'student' %}
+				<li class="dropdown">
+					<a href="#" data-toggle="dropdown" class="dropdown-toggle">Forms <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="equality">Equality</a></li>
+						<li><a href="progressStudent">Progress</a></li>
+						<li><a href="evaluationStudent">Evaluation</a></li>
+					</ul>
+				</li>
+				{% endif %}
+				<li><a href="https://my.napier.ac.uk/Pages/Home.aspx">myNapier</a></li>
+
+				<!-- hidden on smaller devices to reduce width/no. of elements -->
+				<li><a class="hidden-md hidden-sm hidden-xs" href="https://staff.napier.ac.uk/Pages/home.aspx">Staff Intranet</a></li>
+				<li><a class="hidden-md hidden-sm hidden-xs"href="https://www.napier.ac.uk/about-us/work-with-us">Jobs</a></li>
+				<li><a class="hidden-md hidden-sm hidden-xs"href="https://www.napier.ac.uk/people">Staff directory</a></li>
+
+
+
+
+				<!-- below is where the session else if needs to go -->
+				{% if whos == 'staff' %}
+					<li><a href="{{ url_for('adminDash') }}">Admin</a></li>
+				{% endif %}
+				{% if whos != '' %}
+					<li><a href="{{ url_for('logout') }}">Logout</a></li>
+				{% else %}
+					<li><a href="{{ url_for('login') }}">Login</a></li>
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+
+		<div class="row">
+			<nav class="nav">
+				<li><a href="https://www.napier.ac.uk/"><img class="navLeft" src="../static/images/napierLogo.png"></a></li>
+					<li><a href="https://www.napier.ac.uk/courses">Courses</a>
+					<div class="secondaryCourses">
+						<ul>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas">Study areas</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/accounting-and-finance">Accounting and Finance</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/acting">Acting</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/biosciences">Biosciences</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/building-and-surveying">Building and Surveying</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/business-and-management">Business and Management</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/computing">Computing</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/criminology-psychology-and-sociology">Criminology Psychology and Sociology</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/design">Design</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/engineering">Engineering</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/english">English</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/film-journalism-and-media">Film Journalism and Media</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/health-and-social-care">Health & Social Care</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/law">Law</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/marketing-and-sales">Marketing and Sales</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/music">Music</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/nursing-and-midwifery">Nursing and Midwifery</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/sport-and-exercise-sciences">Sport and Exercise Sciences</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/teaching">Teaching</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/tourism-hospitality-festival-and-events-management">Tourism Hospitality Festival and Events Management</a></li>
+							<li><a class="secNavHyperLink" href="https://www.napier.ac.uk/courses/study-areas/vet-nursing">Vet Nursing</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<li><a href="https://www.napier.ac.uk/study-with-us">Study with us</a>
+					<div class="secondary">
+						<ul>
+							<li><a class="secNavHyperLink" href="/study-with-us/undergraduate">Undergraduate</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/postgraduate">Postgraduate</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/international-students">International students</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/online">Online</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/apprenticeships">Graduate Apprenticeships</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/bursaries">Bursaries and scholarships</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/graduation">Celebrating success</a></li>
+							<li><a class="secNavHyperLink" href="/study-with-us/accommodation">Accommodation</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/research-degrees">Our research degrees</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<li><a href="https://www.napier.ac.uk/global">Global</a>
+					<div class="secondary">
+						<ul>
+							<li><a class="secNavHyperLink" href="/study-with-us/international-students">International students</a></li>
+							<li><a class="secNavHyperLink" href="/global/international-partners">International partners</a></li>
+							<li><a class="secNavHyperLink" href="/global/exchange-programmes">Exchange programmes</a></li>
+							<li><a class="secNavHyperLink" href="/global/transnational-education">Transnational education</a></li>
+							<li><a class="secNavHyperLink" href="/global/global-research">Global research</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<li><a href="https://www.napier.ac.uk/research-and-innovation">Research and innovation</a>
+					<div class="secondary">
+						<ul>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/business">Business engagement</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/impact-case-studies">Impact case studies</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/our-experts">Our expert staff</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/research-degrees">Our research degrees</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/research-environment">Our research environment</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/public-engagement">Public engagement</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/repository">Repository</a></li>
+							<li><a class="secNavHyperLink" href="/research-and-innovation/research-search">Research explorer tool</a></li>
+						</ul>
+					</div>
+				</li>
+				<li><a href="https://www.napier.ac.uk/alumni">Alumni</a>
+					<div class="secondary">
+						<ul><li><a class="secNavHyperLink" href="/alumni/alumni-news">Alumni News</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/become-a-volunteer">Become a volunteer</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/enjoy-the-benefits">Enjoy the benefits</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/events-and-networks">Events and networks</a></li><li><a class="secNavHyperLink" href="/alumni/explore-your-community">Explore your community</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/give-something-back">Give something back</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/graduate-outcomes">Graduate Outcomes</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/opt-in-and-stay-in-touch">Opt in and stay in touch</a></li>
+							<li><a class="secNavHyperLink" href="/alumni/student-records-shop">Student records shop</a></li>
+						</ul>
+					</div>
+				</li>
+				<li><a href="https://www.napier.ac.uk/about-us">About us</a>
+					<div class="secondary">
+						<ul>
+							<li><a class="secNavHyperLink" href="/about-us/our-schools">Our schools</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/our-history">Our history</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/our-location">Our location</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/university-leadership">University leadership</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/university-governance">University governance</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/news">News</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/events">Events</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/term-dates">Term dates</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/venue-hire">Venue hire</a></li>
+							<li><a class="secNavHyperLink" href="/about-us/contact-us">Contact us</a></li>
+							<li><a class="secNavHyperLink" href="/people">Staff directory</a></li>
+						</ul>
+					</div>
+				</li>
+				<li><a href="#"><img class="imgLogo" src="../static/images/searchIcon.png"></a></li>
+
+			</nav>
+		</div>
+
+
+
+		<div class="row">
+			<div class="tagLine">
+				<h1>{{pageTitle}}</h1>
+			</div>
+		</div>
+	</div>
+
+<body>
+
+<!--Do not delete it! Use it for Flash Messages-->
+
+		<div class="row flash_message">
+			<div class="col-md-6 col-md-offset-3">
+			{% for message in get_flashed_messages() %}
+				<div class="alert alert-warning">
+						<button type="button" class="close" data-dismiss="alert">
+							&times;
+						</button>
+						{{ message }}
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+
+		<!--End Flash Messages-->
+
+{% block content %} {% endblock %}
+
+
+<div class="container footer_container">
+	<footer class="footer"></footer>
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="footerBlack">
+				<div class="row">
+					<div class="col-lg-3">
+						<a href="https://www.napier.ac.uk/about-us/contact-us">Contact Us</a>
+					</div>
+					<div class="col-lg-3">
+						<a href="https://www.napier.ac.uk/accessibility-information">Accessibility information</a>
+					</div>
+					<div class="col-lg-3">
+						<a href="https://www.napier.ac.uk/privacy-policy">Privacy policy </a>
+					</div>
+					<div class="col-lg-3">
+						<a href="https://www.napier.ac.uk/cookie-policy">Cookie policy</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4">
+						<a href="https://www.napier.ac.uk/about-us/university-governance/freedom-of-information">Freedom of Information</a>
+					</div>
+					<div class="col-lg-4">
+						<a href="https://www.napier.ac.uk/about-us/university-governance/modern-slavery-statement">Modern Slavery Statement </a>
+					</div>
+					<div class="col-lg-4">
+						<a href="https://www.napier.ac.uk/about-us/university-governance/making-a-complaint">Make a complaint</a>
+					</div>
+				</div>
+				<p><br>Edinburgh Napier University is a registered Scottish charity. Registration SC018373</p>
+			</div>
+		</div>
+
+			<div class="col-lg-4">
+				<div class="footerRed"></div>
+				<div class="row">
+					<div class="col-lg-3 col-lg-offset-4">
+						<img class="footerLogo hidden-xs hidden-sm hidden-md" src="../static/images/napierLogo2.png" alt="napier logo">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{{url_for ('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+</html>

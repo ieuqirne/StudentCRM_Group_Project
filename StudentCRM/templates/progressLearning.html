@@ -1,0 +1,140 @@
+
+{% extends "template.html" %}
+{% block content %}
+
+
+
+
+    <div class="container form_container">
+        <div class="row top">
+            <div class="col-sm-6">
+                <a class="breadcrumbs" href="https://www.napier.ac.uk">Home </a><span class="glyphicon glyphicon-play"></span>
+
+                <a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us"> Study with us </a><span class="glyphicon glyphicon-play"></span>
+
+                <a class="breadcrumbs" href="{{ url_for('home') }}"> Graduate Apprenticeship </a><span class="glyphicon glyphicon-play"></span>
+
+                <a class="breadcrumbs" href="#"><!-- this actually stays as '#' --> Progress</a>
+            </div>
+
+            <div class="col-sm-3 right">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                    <img class="share_icon" src="../static/images/fbLogo.png" alt="facebook share icon">
+                </a>
+
+                <a href="https://twitter.com/intent/tweet?url=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                    <img class="share_icon" src="../static/images/twitterLogo.png" alt="twitter share icon">
+                </a>
+
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.napier.ac.uk%3A443%2Fstudy-with-us%2Fapprenticeships%2Fbecome-an-apprentice">
+                    <img class="share_icon" src="../static/images/lnLogo.png" alt="linkedin share icon">
+                </a>
+
+                <a href="mailto:ga@napier.ac.uk.?subject=apprenticeshipscheme">
+                    <img class="share_icon" src="../static/images/mailLogo.png" alt="mail share icon">
+                </a>
+            </div>
+        </div>
+        <h3>
+            Graduate Apprenticeship Programme <br> Progress Form
+        </h3>
+
+        <h3 class="blueBanner">Apprentice's Progress on campus</h3>
+
+
+            <div class="form-group">
+              <form action="" method="post">
+              {{ form.hidden_tag() }}
+              {{ form.csrf_token }}
+                    <p>
+                      <b>{{ form.overall_exp.label }}</b>
+                         {{ form.overall_exp(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_1.label }}<br>
+                        {{ form.q_1(class="form-control") }}
+                        {{ form.c_1.label }}<br>
+                        {{ form.c_1(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_2.label }}<br>
+                        {{ form.q_2(class="form-control") }}
+                        {{ form.c_2.label }}<br>
+                        {{ form.c_2(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_3.label }}<br>
+                        {{ form.q_3(class="form-control") }}
+                        {{ form.c_3.label }}<br>
+                        {{ form.c_3(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_4.label }}<br>
+                        {{ form.q_4(class="form-control") }}
+                        {{ form.c_4.label }}<br>
+                        {{ form.c_4(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_5.label }}<br>
+                        {{ form.q_5(class="form-control") }}
+                        {{ form.c_5.label }}<br>
+                        {{ form.c_5(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_6.label }}<br>
+                        {{ form.q_6(class="form-control") }}
+                        {{ form.c_6.label }}<br>
+                        {{ form.c_6(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_7.label }}<br>
+                        {{ form.q_7(class="form-control") }}
+                        {{ form.c_7.label }}<br>
+                        {{ form.c_7(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_8.label }}<br>
+                        {{ form.q_8(class="form-control") }}
+                        {{ form.c_8.label }}<br>
+                        {{ form.c_8(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_9.label }}<br>
+                        {{ form.q_9(class="form-control") }}
+                        {{ form.c_9.label }}<br>
+                        {{ form.c_9(class="form-control") }}
+                    </p>
+                    <p>
+                        <br>
+                        {{ form.q_10.label }}<br>
+                        {{ form.q_10(class="form-control") }}
+                        {{ form.c_10.label }}<br>
+                        {{ form.c_10(class="form-control") }}
+                    </p>
+                    {{ form.submit(class="btn btn-danger")}}
+
+              </form>
+            </div>
+
+             <div class="row logos">
+        <div class="col-md-3">
+            <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+        </div>
+        <div class="col-md-3 col-md-offset-4">
+            <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+            alt= "European and Scotland Funded">
+        </div>
+        </div>
+
+
+        </div>
+{% endblock %}

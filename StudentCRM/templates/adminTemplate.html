@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Graduate Apprenticeship Napier University</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{{url_for ('static', filename='bootstrap/css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{url_for ('static', filename='adminStyles.css')}}">
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600" rel="stylesheet">
+
+
+
+		<!--Do not delete it! Use it for Flash Messages-->
+		<div class="row flash_message">
+			<div class="col-md-6 col-md-offset-3">
+			{% for message in get_flashed_messages() %}
+			<div class="alert alert-warning">
+					<button type="button" class="close" data-dismiss="alert">
+						&times;
+					</button>
+					{{ message }}
+			</div>
+			{% endfor %}
+			</div>
+		</div>
+		<!--End Flash Messages-->
+	</head>
+
+
+<!--End Flash Messages-->
+
+
+<!-- scripts -->
+{% block content %} {% endblock %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{{url_for ('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+	</body>
+</html>

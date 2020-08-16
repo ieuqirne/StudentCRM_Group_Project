@@ -1,0 +1,272 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+    <!-- checked on w3c validator, error free -->
+    <!-- Employer section begins -->
+<body>
+
+<div class="container complete_form_container">
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+                <button type="button" class="btn btn-info hidden-print" onclick="window.print()"><span class="glyphicon glyphicon-print"></span> Print This Page</button>
+            </div>
+    </div>
+
+
+
+
+
+
+
+            <div class="row logos hidden-print">
+                <div class="col-sm-3">
+                    <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+                </div>
+                <div class="col-sm-3 col-sm-offset-4">
+                    <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+                    alt= "European and Scotland Funded">
+                </div>
+            </div>
+            <h3 class="content_head">Graduate Apprenticeship Programme<br>Apprentice Progress Report</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">Apprentice Name</th>
+                        <th class="half_width">GA Course Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ studentInfo.firstName }} {{ studentInfo.surname}}</td>
+                        <td class="half_width">{{ studentInfo.degree_link.degree_name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">GA Course Name</th>
+                        <th class="half_width">Employer Name</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr>
+                            <td class="half_width">{{ studentInfo.degree_link.degree_name }}</td>
+                            <td class="half_width">{{ employerInfo.firstName }} {{ employerInfo.surname }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                    <h3 class="content_head">Section A - Progress in the Workplace<span class="lighter_font_weight">
+                        (Employers should complete this section)</span></h3>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Please provide details of any support in place for apprentices to assist their progression and achievement.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ progressReportFromEmployer.question_1 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Please provide detail on how you, as the employer, contributed to shaping your apprentice’s learning plan.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ progressReportFromEmployer.question_2 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Please sign the below to confirm all the details in Section A are accurate</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="half_width">Employer Name</th>
+                                <th class="half_width">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="half_width">{{ employerInfo.firstName }} {{ employerInfo.surname }}</td>
+                                <td class="half_width">{{ currentDate.strftime('%Y-%m-%d') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Employer Signature</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="/static/Uploads/{{ employerInfo.signature_image_link }}" alt="Employer Not Uploaded Signature"></td>
+                            </tr>
+                        </tbody>
+                    </table>   
+                            <!-- employer section ends -->
+
+                            <!-- Learning provider section begins -->
+                    <h3 class="content_head">Section B - Progress on Campus <span class="lighter_font_weight">
+                        (Learning Providers should complete this section)</span></h3>
+                    <table class="table table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Detail the apprentice’s progress on campus with reference to the Individual’s Learning Plan.</th>
+                            </tr>
+                        </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ progressReportFromStaff.question_1 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please detail how the process of reflection on work practice and reviewing and learning 
+                                from experience is integrated into the apprentice’s on campus experience.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ progressReportFromStaff.question_2 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please provide any additional comments on the apprentice’s progression and 
+                                achievement within the GA programme.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ progressReportFromStaff.question_3 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please sign the below to confirm all the details in Section B are accurate</th>
+                        </tr>
+                    </thead>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="half_width">Learning Provider Name</th>
+                            <th class="half_width">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="half_width">{{ staffInfo.firstName }} {{ staffInfo.surname }}</td>
+                            <td class="half_width">{{ currentDate.strftime('%Y-%m-%d') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Learning Provider Signature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="/static/Uploads/{{ staffInfo.signature_image_link }}"></td>
+                        </tr>
+                    </tbody>
+                </table>   
+                            <!-- Learning provider section ends -->
+
+                            <!-- student section begins -->
+                <h3 class="content_head">Section C - Apprentice's Progress </h3>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please provide detail on your progress both on campus and in the workplace. 
+                                <span class="lighter_header">For example, detail any additional tasks or responsibilities which 
+                                    you now carry out.</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ progressReport.question_1 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please detail how the process of reflection on work practice and reviewing and 
+                                learning from experience is integrated into your experience on campus and in the work place.  </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ progressReport.question_2 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please provide any additional comments on the GA programme which you would like to provide.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ progressReport.question_3 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Please sign the below to confirm all the details in Section C are accurate</th>
+                        </tr>
+                    </thead>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                            <tr>
+                                <th class="half_width">Apprentice Name</th>
+                                <th class="half_width">Date</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="half_width">{{ studentInfo.firstName }} {{ studentInfo.surname }}</td>
+                            <td class="half_width">{{ currentDate.strftime('%Y-%m-%d') }}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Apprentice Signature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="/static/Uploads/{{ studentInfo.signature_image_link }}"></td>
+                        </tr>
+                    </tbody>
+                </table>   
+            </div><!-- close container -->                         
+{% endblock %}

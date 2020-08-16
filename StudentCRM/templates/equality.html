@@ -1,0 +1,184 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class="container form_container">
+
+    <div class="row top">
+
+        <div class="col-sm-6">
+            <a class="breadcrumbs" href="https://www.napier.ac.uk">Home </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us"> Study with us </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="{{ url_for('home') }}"> Graduate Apprenticeship </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="#"><!-- this actually stays as '#' --> Equality</a>
+        </div>
+
+        <div class="col-sm-3 right">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                <img class="share_icon" src="../static/images/fbLogo.png" alt="facebook share icon">
+            </a>
+
+            <a href="https://twitter.com/intent/tweet?url=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                <img class="share_icon" src="../static/images/twitterLogo.png" alt="twitter share icon">
+            </a>
+
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.napier.ac.uk%3A443%2Fstudy-with-us%2Fapprenticeships%2Fbecome-an-apprentice">
+                <img class="share_icon" src="../static/images/lnLogo.png" alt="linkedin share icon">
+            </a>
+
+            <a href="mailto:ga@napier.ac.uk.?subject=apprenticeshipscheme">
+                <img class="share_icon" src="../static/images/mailLogo.png" alt="mail share icon">
+            </a>
+        </div>
+    </div>
+
+
+
+    <h2>
+        Graduate Apprenticeship Programme<br>
+        Equality Monitoring Form
+    </h2>
+
+
+    <h3 class="blueBanner">Section A - SDS Privacy Notice</h3>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+
+        <div class="gray">
+            <p>The Skills Development Scotland Co Ltd ("SDS", "we" or "us") is the national skills body supporting the people and businesses of Scotland to develop and apply their skills</p>
+            <p>The Graduate Apprenticeship Project</p>
+            <p>The Graduate Apprenticeship project ("GA PRoject") is a project funded by SDS to support the training of
+                individuals ("Participants", "you", or "your"), and which is operated and delivered by Universities,
+                Colleges or other educational or training providers("training partners") and funded through SDS by the
+                Scottish Government and the European Social Fund.</p>
+            <p>SDS does not operate or deliver the GA Proect, but we do assist the Scottish Government monitor and report
+                on its delivery, quality and outcomes, as well as assisting in the monitoring of equalites data.</p>
+            <p>In doing so, SDS will collect and process the information about you. SDS has set out details of how SDS will
+                use your personal data in SDS’s Graduate Apprentice Privacy Notice. Your training provider must provide you
+                with a copy of the Privacy Notice and give you an opportunity to read it, before you complete and sign this
+                form. </p>
+        </div>
+        <div class="form-group">
+            <!--<label for="selectUni">Please select the University or College you are registered with</label>
+            <select class="form-control" id="selectUni">
+                <option>Edinburgh Napier University</option>
+            </select>-->
+
+
+            <label class="white">{{ form.selectCourse.label }}</label>
+            {{ form.selectCourse(class="form-control") }}
+
+            <label for="startDate">Course Start Date</label>
+            <select class="form-control  no_choice" id="startDate">
+                <option>09/09/2019</option>
+            </select>
+
+            {{ form.entryLevel.label }}
+            {{ form.entryLevel(class="form-control") }}
+
+            {{ form.courseLength.label }}
+            {{ form.courseLength(class="form-control") }}
+
+            {{ form.ethnic_group.label }}
+            <p>{{ form.ethnic_groupText}}</p>
+            {{ form.ethnic_group(class="form-control") }}
+
+            {{ form.religion_group.label }}
+            <p>{{ form.religion_groupText }}</p>
+            {{ form.religion_group(class="form-control") }}
+
+            {{ form.transgender.label }}
+            <p>{{ form.transgenderText }}</p>
+            {{ form.transgender(class="form-control") }}
+
+            {{ form.sexual_orientation.label }}
+            <p>{{ form.sexual_orientationText }}</p>
+            {{ form.sexual_orientation(class="form-control") }}
+
+            {{ form.care_experience.label }}
+            <p>{{ form.care_experienceText1 }}</p>
+            {{ form.care_experience(class="form-control") }}
+            <p>{{ form.care_experienceText2 }}</p>
+
+        </div>
+
+
+        <h3 class="blueBanner">Section B </h3>
+
+        <div class="form-group">
+
+            <label class="white">{{ form.gender.label }}</label><br>
+            {{ form.gender(class="form-control") }}
+
+            {{ form.disability.label }}<br>
+            <p>{{ form.disabilityText }}</p>
+            <p>{{ form.disabilityText2 }}</p>
+            {{ form.disability(class="form-control") }}
+            <p>{{ form.disabilityText3 }}</p>
+
+            <p><b>{{ form.illness }}</b></p>
+
+
+                <p>
+                    {{ form.illness_asperger() }}
+                    {{ form.illness_aspergerText }}
+                </p>
+                <p>
+                    {{ form.illness_blind() }}
+                    {{ form.illness_blindText }}
+                </p>
+                <p>
+                    {{ form.illness_deaf() }}
+                    {{ form.illness_deafText }}
+                </p>
+                <p>
+                    {{ form.illness_long() }}
+                    {{ form.illness_longText }}
+                </p>
+                <p>
+                    {{ form.illness_mental() }}
+                    {{ form.illness_mentalText }}
+                </p>
+                <p>
+                    {{ form.illness_learning() }}
+                    {{ form.illness_learningText }}
+                </p>
+                <p>
+                    {{ form.illness_mobility() }}
+                    {{ form.illness_mobilityText }}
+                </p>
+                <p>
+                    {{ form.illness_not_listed() }}
+                    {{ form.illness_not_listedText }}
+                </p>
+
+
+            <p>{{ form.readCheck()}}I have read and accept the <a href="/privacy" target="blank">SDS Graduate Apprenticeship Privacy Policy</a></p>
+
+            <div class="gray">
+                <p>{{ form.endText }}</p>
+            </div>
+            <p>
+              {{ form.submit(class="btn btn-danger")}}
+            </p>
+           </div>
+
+
+
+         <div class="row logos">
+            <div class="col-md-3">
+                <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+            </div>
+            <div class="col-md-3 col-md-offset-4">
+            <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+            alt= "European and Scotland Funded">
+            </div>
+        </div>
+
+        </form>
+</div>
+{% endblock %}

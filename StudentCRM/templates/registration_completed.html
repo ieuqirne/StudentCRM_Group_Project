@@ -1,0 +1,394 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+ 
+    <!-- checked on w3c validator, error free-->
+ <body>
+        <div class="container complete_form_container">
+
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-5">
+                    <button type="button" class="btn btn-info hidden-print" onclick="window.print()"><span class="glyphicon glyphicon-print"></span> Print This Page</button>
+                </div>
+            </div>
+
+            <div class="row logos hidden-print">
+                <div class="col-lg-3">
+                    <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+                </div>
+                <div class="col-lg-3 col-lg-offset-4">
+                    <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+                alt= "European and Scotland Funded">
+                </div>
+            </div>
+            
+            <!--Begin Section A-->          
+            <h3 class="content_head">Graduate Apprenticeship Programme<br>Apprentice Participant Registration Form</h3>
+            <h3 class="content_head">Section A - Personal Details</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">National Insurance Number</th>
+                        <th class="half_width">Date of Birth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ studentInfo.nin }}</td>
+                        <td class="half_width">{{ studentInfo.date_birth.strftime('%Y-%m-%d') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">First Name(s)</th>
+                        <th class="half_width">Last Name(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ studentInfo.firstName }}</td>
+                        <td class="half_width">{{ studentInfo.surname }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">Contact Telephone Number</th>
+                        <th  class="half_width">Email Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td  class="half_width">{{ studentInfo.phone }}</td>
+                        <td  class="half_width">{{ studentInfo.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Address (including postcode)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ studentInfo.address_1 }} {{ studentInfo.address_2 }} <br>{{ studentInfo.city }}<br>
+                                {{ studentInfo.post_code }}</td>
+                        </tr>
+                    </tbody>
+            </table>
+            <!--End Section A-->
+
+            <!--Begin Section B-->                   
+            <h3 class="content_head">Section B - Course Details</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Please tick the University or College you are registered with</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Edinburgh Napier University</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <tbody>
+                    <tr>
+                        <td>{{ studentInfo.degree_link.degree_name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Course Start Date</th>
+                        <th>Apprenticeship Entry Level</th>
+                        <th>Length of Programme</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>September 2019</td>
+                        <td>{{ studentInfo.year_entry }}</td>
+                        <td>{{ studentInfo.degree_link.length }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!--End Section B-->
+            <!--Begin Section C-->
+
+            <h3 class="content_head">Section C - Employment Details</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="red_info"><p>ESF funding requires evidence of employment status. 
+                            Please sign below to confirm the status of the Apprentice 
+                            as employed and the start date of their employment. Failure 
+                            to complete Section C of this form will require proof of 
+                            employment such as copy of Contract of employment or Wage Slip.</p></th>
+                    </tr>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">Employer Name</th>
+                        <th class="half_width">Employment Start Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ employerInfo.firstName }} {{ employerInfo.surname }}</td>
+                        <td class="half_width">{{ studentInfo.employmentStartDate.strftime('%d-%m-%Y') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                <tr>
+                    <th>Employer Address (Including postcode) Address where the Apprentice is based.</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ employerInfo.address_1 }} {{ employerInfo.address_2 }}<br>{{ employerInfo.city }}<br>{{ employerInfo.post_code }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">Employer Signature</th>
+                        <th class="half_width">Job Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width"><img src="/static/Uploads/{{ studentInfo.signature_image_link }}" style="width:50%;"></td>
+                        <td class="half_width">{{ studentInfo.jobTitle }}</td>
+                    </tr>
+                </tbody>
+            </table>
+                                            
+            <!--End Section C-->
+            <!--Begin Section D-->
+
+            <h3 class="content_head">Section D - Learner’s Achievements</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Level</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for achievement in getAchievements %}
+                        <tr>
+                            <td>{{ achievement.subject }}</td>
+                            <td>{{ achievement.level }}</td>
+                            <td>{{ achievement.grade }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!--End Section D-->
+            <!--Begin Section E-->
+
+            <h3 class="content_head">Section E - Declaration</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg"><p>INFORMATION EXCHANGE ACKNOWLEDGEMENT AND CO-OPERATION AGREEMENT 
+                            <span class="lighter_header">Elements of the Graduate Apprenticeship programme are funded by 
+                                The Skills Development Scotland Co Ltd ('SDS') and European Social Fund. It is necessary 
+                                for information regarding yourself as described in SDS’S Privacy Notice relating to the 
+                                Graduate Apprenticeship Programme. (" Personal Information") to be passed to SDS for the 
+                                purposes set out in that Privacy Notice.
+                                The information may be shared with other organisations in the manner described in that 
+                                Privacy Notice</span></p>
+                                <p>
+                                <span class="lighter_header">
+                                We will not publish any of your personal information outwith the terms of this Agreement 
+                                or the GA Privacy Notice without your explicit and informed consent.</span>
+                                </p>
+                                <p>Participant’s Acknowledgement and Undertaking to SDS
+                                </p>
+                                <p><span class="lighter_header">
+                                By agreeing to participate in the Programme, I confirm that I have read and understood 
+                                the contents of this Agreement and hereby:</span>
+                                </p>
+                                <p><span class="lighter_header">
+                                (a)  acknowledge that the Information identified in SDS’s Privacy Notice for the Graduate 
+                                Apprenticeship Programme will be passed to SDS and used in the manner identified in that 
+                                Privacy Notice;</span>
+                                </p>
+                                <p><span class="lighter_header">
+                                (b) undertake to co-operate with SDS and/or any of its partners or agents (referred to in 
+                                the privacy notice) who may contact me to assist SDS and/or its partners in the monitoring, 
+                                audit and/or evaluation of the Programme and the assessment of the impact of the Programme;</span>
+                            </p>
+                            <p><span class="lighter_header">
+                                (c) undertake to co-operate fully with SDS (and/or SDS’s agents, as applicable) in response 
+                                to any text or other message request for information to enable SDS to validate learning 
+                                provider claims for payment concerning my participation in the Programme; </span>
+                            </p>
+                            <p><span class="lighter_header">
+                                (d) undertake to co-operate fully with SDS (and/or SDS’s agents, as applicable) in response 
+                                to any reasonable request for information concerning my participation in the Programme, to 
+                                enable SDS to monitor learning provider compliance and quality assurance, measure outcomes 
+                                and to assist with policy development; and</span>
+                            </p>
+                            <p><span class="lighter_header">
+                                (e) confirm that the details entered above or in any other information I may provide to any 
+                                person in connection with my participation in the Programme is/are correct.</span>
+                            </p>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">Apprentice Name</th>
+                        <th class="half_width">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ studentInfo.firstName }} {{ studentInfo.surname }}</td>
+                        <td class="half_width">{{ studentInfo.signDate.strftime('%d-%m-%Y') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Apprentice Signature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><!-- image goes here --><img src="/static/Uploads/{{ studentInfo.signature_image_link }}" style="width:50%;"></td>
+                    </tr>
+                </tbody>
+            </table> 
+            <h3 class="content_head">Learning Provider Official Use Only</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">Learning Provider Name</th>
+                        <th class="half_width">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ staffInfo.firstName }} {{ staffInfo.surname }}</td>
+                        <td class="half_width">{{ date.strftime('%d-%m-%Y') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Learning Provider Signature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img style='max-width: 800px;  height: auto;' src="/static/Uploads/{{ staffInfo.signature_image_link }}" style="width:50%;"></td>
+                    </tr>
+                </tbody>
+            </table> 
+            <h3 class="content_head">SDS Office Use Only</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">SDS Name</th>
+                        <th class="half_width">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width"></td>
+                        <td class="half_width"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>SDS Signature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><!-- image goes here --></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student's Supporting Documents</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Proof of ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img style='max-width: 800px;  height: auto;' src="/static/Uploads/{{ studentInfo.id_image_link }}" alt="No Proof Of ID"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Proof of Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img style='max-width: 800px;  height: auto;' src="/static/Uploads/{{ studentInfo.address_proof_image_link }}" alt="No Proof Of Address"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Proof of Qualifications</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img style='max-width: 800px;  height: auto;' src="/static/Uploads/{{ studentInfo.qualification_image_link }}" alt="No Proof Of Qualifications"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div><!-- close container -->                         
+        
+{% endblock %}
+
+

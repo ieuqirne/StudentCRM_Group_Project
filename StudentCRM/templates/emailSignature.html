@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graduate Apprenticeship Signature Upload</title>
+    <style type="text/css">
+
+        @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+        @media screen {
+        @font-face {
+        font-family: 'Titillium Web';
+        font-style: normal;
+        font weight: 400;
+        src: local('Titillium+Web'), url('https://fonts.googleapis.com/css?family=Titillium+Web');
+        }
+        }
+
+        * {
+            font-family: 'Titillium Web', Arial, sans-serif;
+            color: #333333;
+        }
+
+        body {
+            max-width: 900px;
+            display: block;
+            margin: auto;
+            padding: 10px;
+        }
+
+        a {
+        color: #377F98;
+            text-decoration: underline;
+        }
+
+        a:active, a:hover {
+            text-decoration: none;
+        }
+
+        h3 {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <img style="width: 100%;" src="https://soc-web-liv-51.napier.ac.uk/static/images/email_banner.png" alt="group of graduate apprentices">
+
+    <!-- unique content here -->
+    <h3>Graduate Apprenticeship: Please Upload Your Signature</h3>
+    <hr>
+    <p style= "margin-bottom: 50px;">Hello,<br>
+    We need a digital copy of your signature to complete online forms. Please click the following link to upload your signature
+        <a href="http://localhost:5000/SignatureUpload?Verify={{ generatedHash }}&Type=employer">link</a></p>
+
+    <!--end content-->
+
+     <!-- same for all emails-->
+    <h5>Edinburgh Napier University Graduate Apprenticeship Team</h5>
+
+    <img style="height: 40px; width: auto;" src="https://soc-web-liv-51.napier.ac.uk/static/images/napierLogo.png" alt="napier logo">
+
+    <p style="font-size: 0.8em;">The Graduate Apprenticeship Privacy Notices that detail how we process your
+    information are located here: <a target="_blank" class="email_footer_text" href="https://soc-web-liv-51.napier.ac.uk/privacy">Privacy Statement</a></p>
+
+    <p style="font-size: 0.8em;">This message and its attachment(s) are intended for the addressee(s) only and should not be read, copied,
+    disclosed, forwarded or relied upon by any person other than the intended addressee(s) without the permission
+    of the sender.If you are not the intended addressee you must not take any action based on this message and its attachment(s)
+    nor must you copy or show them to anyone. Please respond to the sender and ensure that this message and its
+    attachment(s) are deleted.</p>
+
+    <p style="font-size: 0.8em;">It is your responsibility to ensure that this message and its attachment(s) are scanned for viruses or other defects.
+    Edinburgh Napier University does not accept liability for any loss or damage which may result from this message or
+    its attachment(s), or for errors or omissions arising after it was sent. Email is not a secure medium. Emails entering
+    Edinburgh Napier University's system are subject to routine monitoring and filtering by Edinburgh Napier University.</p>
+
+    <p style="font-size: 0.8em;">Edinburgh Napier University is a registered Scottish charity. Registration number SC018373</p>
+
+</body>
+
+</html>

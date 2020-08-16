@@ -1,0 +1,406 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+
+<body>
+
+<div class="container admin_container">
+    <header class="adminHeader">
+        <div class="row">
+            <div class="col-md-4"><img class="img-responsive menu_logo" src="../static/images/napierLogo2.png" alt="napier logo"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-2"><a class="admin_menu_link" href="createStaff">Create Staff</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" href="UploadSigStaff">Upload Signature</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" target="blank" href="equalityStats/2019">Equality Stats</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" target="blank" href="progressStaff">Reports</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" href="{{ url_for('logout') }}">Logout</a></div>
+        </div>
+    </header>
+
+
+
+    <a class="breadcrumbs" href="{{ url_for('home') }}">Graduate Apprenticeships</a><span class="glyphicon glyphicon-play"></span>
+
+    <a class="breadcrumbs" href="{{ url_for('adminDash') }}"> Admin Area </a><span class="glyphicon glyphicon-play"></span>
+
+    <a class="breadcrumbs" href="#">Edit Details</a>
+
+    <h2>Graduate Apprenticeship Programme</h2>
+
+    <h3>Edit Student Details</h3>
+
+
+    <h3 class="blueBanner">Section A - Personal Details</h3>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="NationalInsurance">National Insurance Number</label>
+            {{ form.hidden_tag() }} {{ form.csrf_token() }}
+            {% if request.method == 'POST' %}
+            {% for error in form.NationalInsurance.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.NationalInsurance(class="form-control", value=studentInfo.nin ) }}
+
+            <label for="DOB"> Date of Birth</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.dateOfBirth.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.dateOfBirth(class="form-control", value=studentInfo.date_birth.strftime('%Y-%m-%d') ) }}
+
+            <label for="firstName">First Name</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.firstName.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.firstName(class="form-control", value=studentInfo.firstName) }}
+
+            <label for="lastName">Last Name</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.lastName.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.lastName(class="form-control", value=studentInfo.surname) }}
+
+            <label for="emailAddress">Email Address</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.emailAddress.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.emailAddress(class="form-control", value=studentInfo.email) }}
+
+            <label for="contactNumber">Contact Telephone Number</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.contactNumber.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.contactNumber(class="form-control", value=studentInfo.phone) }}
+
+            <label for="fLineAddress">First Line of Address</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.fLineAddress.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.fLineAddress(class="form-control", value=studentInfo.address_1) }}
+
+            <label for="sLineAddress">Second Line of Address</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.sLineAddress.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.sLineAddress(class="form-control", value=studentInfo.address_2) }}
+
+            <label for="townCity">Town or City</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.townCity.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.townCity(class="form-control", value=studentInfo.city) }}
+
+            <label for="postcode">Postcode</label>
+            {% if request.method == 'POST' %}
+            {% for error in form.postcode.errors %}
+            <span class="errors">[{{ error }}]</span>
+            {% endfor %}
+            {% endif %}
+            {{ form.postcode(class="form-control", value=studentInfo.post_code) }}
+
+        </div>
+
+
+
+
+        <h3 class="blueBanner">Section B - Course Details</h3>
+        <div class="form-group">
+            <label for="selectUni">Please select the University or College you are registered with</label>
+            <select class="form-control no_choice" id="selectUni">
+                <option>Edinburgh Napier University</option>
+            </select>
+            <label for="selectCourse">Please select your course</label> {{ form.selectCourse(class="form-control") }}
+
+            <label for="startDate">Course Start Date</label> {{ form.startDate(class="form-control no_choice", value=studentInfo.degree_link.degree_name) }}
+
+            <label for="entryLevel">Apprenticeship Year Entry</label> {{ form.entryLevel(class="form-control", value=studentInfo.year_entry) }}
+
+            <label for="courseLength">Course Length</label> {{ form.courseLength(class="form-control", value=studentInfo.degree_link.length) }}
+
+        </div>
+
+            <h3 class="blueBanner">Section C - Employment Details</h3>
+            <p>ESF funding requires evidence of employment status. We will contact your employer (using the email address you provide)
+                to confirm your status as employed and the start date of your employment.</p>
+            <p>Failure to complete Section C of this form will require proof of employment such as copy of Contract of employment or Wage Slip.</p>
+
+
+        <label for="employerFirstName">Employer First Name</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerFirstName.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerFirstName(class="form-control", value=employerInfo.firstName) }}
+
+        <label for="employerSecondName">Employer Second Name</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerSurname.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerSurname(class="form-control", value=employerInfo.surname) }}
+
+        <label for="employerEmailAddress">Employer Email Address</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerEmail.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerEmail(class="form-control", value=employerInfo.employer_email) }}
+
+        <label for="employmentStartDate">Employment Start Date (DD/MM/YYYY)</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employmentStartDate.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employmentStartDate(class="form-control", value=studentInfo.employmentStartDate.strftime('%Y-%m-%d')) }}
+
+        <label for="employerFAddress">Employer Address: First Line</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerFAddress.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerFAddress(class="form-control", value=employerInfo.address_1) }}
+
+        <label for="employerSAddress">Employer Address: Second Line</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerSAddress.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerSAddress(class="form-control", value=employerInfo.address_2) }}
+
+        <label for="employerTownCity">Town or City</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerTownCity.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerTownCity(class="form-control", value=employerInfo.city) }}
+
+        <label for="employerPostcode">Postcode</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.employerPostcode.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.employerPostcode(class="form-control", value=employerInfo.post_code) }}
+
+        <label for="jobTitle">Job Title</label>
+        {% if request.method == 'POST' %}
+        {% for error in form.jobTitle.errors %}
+        <span class="errors">[{{ error }}]</span>
+        {% endfor %}
+        {% endif %}
+        {{ form.jobTitle(class="form-control", value=studentInfo.jobTitle) }}
+
+
+        <h3 class="blueBanner">Section D - Learner's Achievements</h3>
+        <div class="row white">
+            <div class="col-lg-8">
+                <label for="subjectOne">Subject</label>
+                {{ form.subjectOne(class="form-control", value=subject[0]) }}
+            </div>
+            <div class="col-lg-2">
+                <label for="levelOne">Level</label>
+                {{ form.levelOne(class="form-control", value=level[0]) }}
+            </div>
+            <div class="col-lg-2">
+                <label for="gradeOne">Grade</label>
+                {{ form.gradeOne(class="form-control", value=grade[0]) }}
+            </div>
+        </div>
+
+        <div class="row gray subject">
+            <div class="col-lg-8">
+                <label for="subjectTwo">Subject</label>
+                {{ form.subjectTwo(class="form-control", value=subject[1]) }}
+            </div>
+            <div class="col-lg-2"><label for="levelTwo">Level</label>
+                {{ form.levelTwo(class="form-control", value=level[1]) }}
+            </div>
+            <div class="col-lg-2"><label for="gradeTwo">Grade</label>
+                {{ form.gradeTwo(class="form-control", value=grade[1]) }}
+            </div>
+        </div>
+
+        <div class="row white">
+            <div class="col-lg-8">
+                <label for="subjectThree">Subject</label>
+                {{ form.subjectThree(class="form-control", value=subject[2]) }}
+            </div>
+            <div class="col-lg-2">
+                <label for="levelThree">Level</label>
+                {{ form.levelThree(class="form-control", value=level[2]) }}
+            </div>
+            <div class="col-lg-2">
+                <label for="gradeThree">Grade</label>
+                {{ form.gradeThree(class="form-control", value=grade[2]) }}
+            </div>
+        </div>
+
+        <div class="row gray subject">
+            <div class="col-lg-8">
+                <label for="subjectFour">Subject</label>{{ form.subjectFour(class="form-control", value=subject[3]) }}
+            </div>
+            <div class="col-lg-2">
+                <label for="levelFour">Level</label>
+                {{ form.levelFour(class="form-control", value=level[3]) }}
+            </div>
+            <div class="col-lg-2">
+                <label for="gradeFour">Grade</label>
+                {{ form.gradeFour(class="form-control", value=grade[3]) }}
+            </div>
+        </div>
+
+            <div class="row white">
+                <div class="col-lg-8">
+                    <label for="subjectFive">Subject</label>
+                    {{ form.subjectFive(class="form-control", value=subject[4]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelFive">Level</label>
+                    {{ form.levelFive(class="form-control", value=level[4]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeFive">Grade</label>
+                    {{ form.gradeFive(class="form-control", value=grade[4]) }}
+                </div>
+            </div>
+
+            <div class="row gray subject">
+                <div class="col-lg-8">
+                    <label for="subjectSix">Subject</label>
+                    {{ form.subjectSix(class="form-control", value=subject[5]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelSix">Level</label>
+                    {{ form.levelSix(class="form-control", value=level[5]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeSix">Grade</label>
+                    {{ form.gradeSix(class="form-control", value=grade[5]) }}
+                </div>
+            </div>
+
+            <div class="row white">
+                <div class="col-lg-8">
+                    <label for="subjectSeven">Subject</label>
+                    {{ form.subjectSeven(class="form-control", value=subject[6]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelSeven">Level</label>
+                    {{ form.levelSeven(class="form-control", value=level[6]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeSeven">Grade</label>
+                    {{ form.gradeSeven(class="form-control", value=grade[6]) }}
+                </div>
+            </div>
+
+           <div class="row gray subject">
+                <div class="col-lg-8">
+                    <label for="subjectEight">Subject</label>
+                    {{ form.subjectEight(class="form-control", value=subject[7]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="levelEight">Level</label>
+                    {{ form.levelEight(class="form-control", value=level[7]) }}
+                </div>
+                <div class="col-lg-2">
+                    <label for="gradeEight">Grade</label>
+                    {{ form.gradeEight(class="form-control", value=grade[7]) }}
+                </div>
+                <br>
+            </div>
+
+        {{ form.submit(class="btn btn-danger") }}
+        
+    </form>
+    <br><br>
+
+    <div class="admin_footer">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/contact-us">Contact Us</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/freedom-of-information">Freedom of Information</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/accessibility-information">Accessability information</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/modern-slavery-statement">Modern Slavery Statement </a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/privacy-policy">Privacy policy </a>
+                </div>
+                <div class="row">
+                <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/making-a-complaint">Make a complaint</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/cookie-policy">Cookie policy</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://applications2.napier.ac.uk/service-status">Service Status</a>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <img class="img-responsive" src="../static/images/napierLogo2.png" alt="napier logo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <p class="admin_footer_link white">
+                Edinburgh Napier University is a registered Scottish charity. Registration SC018373
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function more() {
+                document.getElementById("hidden-qualifations").style.display ="block";
+                document.getElementById("moreQualifications").style.display ="none";
+                }
+                function less() {
+                    document.getElementById("hidden-qualifations").style.display ="none";
+                    document.getElementById("moreQualifications").style.display ="block";
+                    }
+    
+                    document.getElementById("moreQualifications").addEventListener("click", more);
+                document.getElementById("lessQualifications").addEventListener("click", less);
+</script>
+
+{% endblock %}

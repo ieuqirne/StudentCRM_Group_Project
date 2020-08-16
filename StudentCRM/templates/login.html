@@ -1,0 +1,44 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+
+
+<body class="login_body">
+
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="heading">
+                    <h3>Edinburgh Napier University </h3>
+                    Graduate Apprenticeship Authentication Service
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="login">
+                    <form method="post" action="">
+                    <label>Email</label>
+                      {% if generatedLink != 0 %}
+                          <a href="{{ generatedLink }}">Link </a>
+                      {% endif %}
+                    <!-- <input type="text" class="form-control" id="emailLogin"> -->
+                        {{ form.csrf_token() }}
+                        {{ form.hidden_tag() }}
+                        {{ form.email(class="form-control") }}
+                    <!-- <button class="btn btn-danger">Submit</button><br> -->
+
+                        {{ form.submit(class="btn btn-danger") }}
+
+
+                        <p class="login_para">A secure login token will be sent to you via email. Please follow the email instructions to log in securely.</p>
+                    </form>
+                    <img class="img-responsive" src="../static/images/napierLogo.png" alt="napier logo">
+                    <p>Need Help? <a href="https://staff.napier.ac.uk/services/cit/Pages/info-services.aspx">Contact IT Support</a></p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class ="container">
+
+		<div class="row top">
+			<div class="col-sm-6">
+				<a class="breadcrumbs" href="https://www.napier.ac.uk">Home </a><span class="glyphicon glyphicon-play"></span>
+
+				<a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us"> Study with us </a><span class="glyphicon glyphicon-play"></span>
+
+				<a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us/apprenticeships"> Graduate Apprenticeship </a><span class="glyphicon glyphicon-play"></span>
+
+				<a class="breadcrumbs" href="#"><!-- this actually stays as '#' --> Upload Signature</a>
+			</div>
+
+			<div class="col-sm-3 right">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+				<img class="share_icon" src="../static/images/fbLogo.png" alt="facebook share icon">
+			</a>
+
+			<a href="https://twitter.com/intent/tweet?url=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+				<img class="share_icon" src="../static/images/twitterLogo.png" alt="twitter share icon">
+			</a>
+
+			<a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.napier.ac.uk%3A443%2Fstudy-with-us%2Fapprenticeships%2Fbecome-an-apprentice">
+				<img class="share_icon" src="../static/images/lnLogo.png" alt="linkedin share icon">
+			</a>
+
+			<a href="mailto:ga@napier.ac.uk.?subject=apprenticeshipscheme">
+				<img class="share_icon" src="../static/images/mailLogo.png" alt="mail share icon">
+			</a>
+			</div>
+		</div>
+
+
+    <h2 class="spaced">
+        Graduate Apprenticeship Programme<br>
+        Signature Upload Form
+    </h2>
+
+    <p class="spaced">Please select an image of your signature to be used in the completion of the Graduate Apprenticeship Programme's online forms.</p>
+
+
+
+    <form class="gray" method="post" enctype="multipart/form-data" action="">
+        {{ form.hidden_tag() }} {{ form.csrf_token() }}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <label>Signature</label>
+                {{ form.uploadFile(class="form-control") }}
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {{ form.submit(class="btn btn-danger") }}
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

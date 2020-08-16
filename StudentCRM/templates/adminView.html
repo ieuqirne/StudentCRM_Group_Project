@@ -1,0 +1,193 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+
+<body>
+
+<div class="container admin_container">
+    <header class="adminHeader">
+        <div class="row">
+            <div class="col-md-4"><img class="img-responsive menu_logo" src="../static/images/napierLogo2.png" alt="napier logo"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-2"><a class="admin_menu_link" href="createStaff">Create Staff</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" href="UploadSigStaff">Upload Signature</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" target="blank" href="equalityStats/2019">Equality Stats</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" target="blank" href="progressStaff">Reports</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" href="{{ url_for('logout') }}">Logout</a></div>
+        </div>
+    </header>
+
+
+
+    <a class="breadcrumbs" href="{{ url_for('home') }}">Graduate Apprenticeships </a> <span class="glyphicon glyphicon-play"></span>
+
+    <a class="breadcrumbs" href="{{ url_for('adminDash') }}"> Admin Area </a><span class="glyphicon glyphicon-play"></span>
+
+    <a class="breadcrumbs" href="#"> Apprentice Details</a>
+
+    <h2>Graduate Apprenticeship Programme</h2>
+
+    <h3>Apprentice Details</h3>
+
+
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+        <button type="button" class="btn btn-basic">
+            <a class="breadcrumbs" href="/adminDash"><span class="glyphicon glyphicon-backward"></span> Dashboard</a>
+        </button>
+        </div>
+    </div>
+
+
+    <h3 class="blueBanner">Personal Details</h3>
+
+
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>GA Course</th>
+                <th>Email</th>
+                <th>Date Registered</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ studentInfo.firstName }} {{ studentInfo.surname }}</td>
+                <td>{{ studentInfo.degree_link.degree_name }}</td>
+                <td>{{ studentInfo.email }}</td>
+                <td>{{ studentInfo.signDate.strftime('%Y-%m-%d') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-3">
+                <a class="btn btn-primary" href="editDetails?ID={{ studentInfo.id_student }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a href="/DeleteRecord?ID={{ studentInfo.id_student }}" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span> Delete
+            </a>
+        </div>
+    </div>
+
+    <h3 class="blueBanner">Forms</h3>
+
+
+
+    <table class="table table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Form</th>
+                <th>Status</th>
+                <th>Overdue</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Registration</td>
+                <td>{{ regComplete }}</td>
+                {% if dataConfirmed == 'Confirmed' %}
+                    <td>-</td>
+                {% else %}
+                <td><a href="confirmStudent?ID={{ studentInfo.id_student }}" class="btn btn-danger">Confirm Data</a></td>
+                {% endif %}
+                <td><a target="blank" href="/ViewRegistration?ID={{ studentInfo.id_student }}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+            </tr>
+            <tr>
+                <td>Equality</td>
+                <td>{{ equalityComplete }}</td>
+                {% if equalityComplete == 'Incomplete' %}
+                    <td><a href="/RemindStudentEquality?ID={{ studentInfo.id_student }}"
+                           class="btn btn-primary reminder">Remind Student</a></td>
+                    <td><span class="glyphicon glyphicon-eye-close"></span></td>
+                {% else %}
+                    <td>-</td>
+                    <td>-</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Progress</td>
+                <td>{{ progComplete }}</td>
+                {% if progComplete == 'Incomplete' %}
+                    <td><a href="/RemindStudentProgress?ID={{ studentInfo.id_student }}"
+                           class="btn btn-primary reminder">Remind Student</a>
+                    <td>-</td>
+                {% else %}
+                    <td>-</td>
+                    <td><a target="blank" href="/ViewProgressForm?ID={{ studentInfo.id_student }}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Evaluation</td>
+                <td>{{ evalComplete }}</td>
+                {% if evalComplete == 'Incomplete' %}
+                    <td><a href="/RemindStudentEvaluation?ID={{ studentInfo.id_student }}"
+                           class="btn btn-primary reminder">Remind Student</a></td>
+                    <td>-</td>
+                {% else %}
+                    <td>-</td>
+                    <td><a target="blank" href="/ViewEvaluation?ID={{ studentInfo.id_student }}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                {% endif %}
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <div class="admin_footer">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/contact-us">Contact Us</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/freedom-of-information">Freedom of Information</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/accessibility-information">Accessability information</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/modern-slavery-statement">Modern Slavery Statement </a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/privacy-policy">Privacy policy </a>
+                </div>
+                <div class="row">
+                <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/making-a-complaint">Make a complaint</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/cookie-policy">Cookie policy</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://applications2.napier.ac.uk/service-status">Service Status</a>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <img class="img-responsive" src="../static/images/napierLogo2.png" alt="napier logo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <p class="admin_footer_link white">
+                Edinburgh Napier University is a registered Scottish charity. Registration SC018373
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    {% endblock %}

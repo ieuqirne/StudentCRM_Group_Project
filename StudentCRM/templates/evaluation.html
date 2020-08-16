@@ -1,0 +1,237 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class="container form_container">
+
+    <div class="row top">
+
+        <div class="col-sm-6">
+            <a class="breadcrumbs" href="https://www.napier.ac.uk">Home </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="https://www.napier.ac.uk/study-with-us"> Study with us </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="{{ url_for('home') }}"> Graduate Apprenticeship </a><span class="glyphicon glyphicon-play"></span>
+
+            <a class="breadcrumbs" href="#"><!-- this actually stays as '#' --> Evaluation</a>
+        </div>
+
+        <div class="col-sm-3 right">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                <img class="share_icon" src="../static/images/fbLogo.png" alt="facebook share icon">
+            </a>
+
+            <a href="https://twitter.com/intent/tweet?url=https://www.napier.ac.uk:443/study-with-us/apprenticeships/become-an-apprentice">
+                <img class="share_icon" src="../static/images/twitterLogo.png" alt="twitter share icon">
+            </a>
+
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.napier.ac.uk%3A443%2Fstudy-with-us%2Fapprenticeships%2Fbecome-an-apprentice">
+                <img class="share_icon" src="../static/images/lnLogo.png" alt="linkedin share icon">
+            </a>
+
+            <a href="mailto:ga@napier.ac.uk.?subject=apprenticeshipscheme">
+                <img class="share_icon" src="static/images/mailLogo.png" alt="mail share icon">
+            </a>
+        </div>
+    </div>
+
+
+
+    <h2>
+        Graduate Apprenticeship Programme<br>
+        Apprenticeship Evaluation Form
+    </h2>
+
+
+    <h3 class="blueBanner">Section A - Personal Details</h3>
+
+    <form method="POST" action="" >
+
+        <div class="form-group">
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            <label for="firstName">First Name</label>
+            <input class="form-control" type="text" name="firstname" value= {{ studentInfo.firstName }} readonly >
+
+            <label for="lastName">Last Name</label>
+            <input class="form-control" type="text" name="surname" value= {{ studentInfo.surname }} readonly >
+
+            <label for="UniversityCollege">University or Colllege</label>
+            <input class="form-control" type="text" name="surname" value= "Edinburgh Napier University" readonly >
+
+            <label for="gaCourseName">GA Course Name</label>
+            <input class="form-control" type="text" name="gaCourseName" value= "{{ degreeInfo.degree_name }}" readonly >
+
+            <h3 class="blueBanner">Section B - Evaluation</h3>
+
+            <div class="white row">
+                <div class="col-sm-8">
+                    <p class="eval_question">On a scale of 1 to 5, how satisfied or dissatisfied are you by your overall experience of your Graduate Apprenticeship so far? Please select the appropriate answer.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.overall_exp(class="form-control") }}
+                </div>
+            </div>
+            <hr>
+
+                <p class="eval_question">Do you disagree or agree with the following statements? Please select the appropriate number, with 1 being completely disagree and 5 being completely agree.</p>
+            <hr>
+
+            <div class="white row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I am supported by my university/college in all areas.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_1(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="supportComment">Comment</label>
+                    {{ form.c_1(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="gray row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I can access all on campus facilities, such as the library, support services, student union etc, at my university/college.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_2(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="accessComment">Comment</label>
+                    {{ form.c_2(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="white row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I feel part of the wider learning community on campus.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_3(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="learningComment">Comment</label>
+                    {{ form.c_3(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="gray row">
+                <div class="col-sm-8">
+                    <p class="eval_question">My individual learning plan is responsive to the needs of my job role (for example, there is minimal assessment during busy times at work.)</p>
+                </div>
+                <div class="col-md-4">
+                    <label>Select answer:</label>
+                    {{ form.q_4(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin>
+                    <label for="planComment">Comment</label>
+                    {{ form.c_4(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="white row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I feel supported by my fellow graduate apprentices.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_5(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="supportComment">Comment</label>
+                    {{ form.c_5(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="gray row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I can use my learning from my graduate apprenticeship and apply it directly to my job role.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_6(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="jobroleComment">Comment</label>
+                    {{ form.c_6(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="white row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I am supported by my employer in all areas of my graduate apprenticeship.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_7(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="employerSupportComment">Comment</label>
+                    {{ form.c_7(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="gray row">
+                <div class="col-sm-8">
+                    <p class="eval_question">I have access to relevant resources in my workplace to support my graduate apprenticeship.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_8(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="relevantComment">Comment</label>
+                    {{ form.c_8(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="white row">
+                <div class="col-sm-8">
+                    <p class="eval_question">My workplace mentor provides useful support in my graduate apprenticeship.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_9(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin>
+                    <label for="mentorComment">Comment</label>
+                    {{ form.c_9(class="form-control") }}
+                </div>
+            </div>
+
+            <div class="gray row bottom">
+                <div class="col-sm-8">
+                    <p class="eval_question">My graduate apprenticeship is helping to improve my future employability.</p>
+                </div>
+                <div class="col-sm-4">
+                    <label>Select answer:</label>
+                    {{ form.q_10(class="form-control") }}
+                </div>
+                <div class="col-xs-12 less_margin">
+                    <label for="employabilityComment">Comment</label>
+                    {{ form.c_10(class="form-control") }}
+                </div>
+            </div>
+
+            {{ form.submit(class="btn btn-danger")}}
+
+            <div class="row logos">
+                <div class="col-md-3">
+                    <img src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+                </div>
+                <div class="col-md-3 col-md-offset-4">
+                    <img class="eu_logo" src="../static/images/europe_scotland_funding.png" alt="European and Scotland Funded">
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

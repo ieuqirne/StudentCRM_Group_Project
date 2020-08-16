@@ -1,0 +1,122 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+
+
+<body>
+
+<div class="container admin_container">
+    <header class="adminHeader">
+        <div class="row">
+            <div class="col-md-4"><img class="img-responsive menu_logo" src="../static/images/napierLogo2.png" alt="napier logo"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-2"><a class="admin_menu_link" href="createStaff">Create Staff</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" href="UploadSigStaff">Upload Signature</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" target="blank" href="equalityStats/2019">Equality Stats</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" target="blank" href="progressStaff">Reports</a></div>
+            <div class="col-sm-2"><a class="admin_menu_link" href="{{ url_for('logout') }}">Logout</a></div>
+        </div>
+    </header>
+
+
+
+    <a class="breadcrumbs" href="{{ url_for('home') }}">Graduate Apprenticeships</a> <span class="glyphicon glyphicon-play"></span>
+
+    <a class="breadcrumbs" href="#">Admin Area</a>
+
+    <h2>Graduate Apprenticeship Programme</h2>
+
+    <h3>Administration Dashboard</h3>
+
+
+
+
+
+
+    <div class="row orderBy">
+        <div class="col-md-2 col-md-offset-4">
+            <label class="right" for="orderBy">Order By: </label>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control">
+            </select>
+        </div>
+    </div>
+    <h3 class="blueBanner">Graduate Apprentices</h3>
+    <table class="table table-responsive table-striped">
+        <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>GA Course</th>
+            <th>Email</th>
+            <th>Date Registered</th>
+            <th>View</th>
+        </tr>
+        </thead>
+            <tbody>
+            {% for user in Students %}
+                <tr>
+                    <td>{{ user.firstName }} {{ user.surname }}</td>
+                    <td>{{ user.degree_link.degree_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.signDate.strftime('%Y-%m-%d') }}</td> <!-- icon -->
+                    <td><a href="/AdminView?ID={{ user.id_student }}"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+
+    <div class="admin_footer">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/contact-us">Contact Us</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/freedom-of-information">Freedom of Information</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/accessibility-information">Accessability information</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/modern-slavery-statement">Modern Slavery Statement </a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/privacy-policy">Privacy policy </a>
+                </div>
+                <div class="row">
+                <a class="admin_footer_link" href="https://www.napier.ac.uk/about-us/university-governance/making-a-complaint">Make a complaint</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <a class="admin_footer_link" href="https://www.napier.ac.uk/cookie-policy">Cookie policy</a>
+                </div>
+                <div class="row">
+                    <a class="admin_footer_link" href="https://applications2.napier.ac.uk/service-status">Service Status</a>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <img class="img-responsive" src="../static/images/napierLogo2.png" alt="napier logo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <p class="admin_footer_link white">
+                Edinburgh Napier University is a registered Scottish charity. Registration SC018373
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

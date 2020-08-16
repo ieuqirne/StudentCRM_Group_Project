@@ -1,0 +1,305 @@
+{% extends "adminTemplate.html" %}
+{% block content %}
+    <!-- checked on w3c validator, error free -->
+
+<body>
+
+        <div class="container complete_form_container">
+
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-5">
+                    <button type="button" class="btn btn-info hidden-print" onclick="window.print()"><span class="glyphicon glyphicon-print"></span> Print This Page</button>
+                </div>
+            </div>
+
+            <div class="row logos hidden-print">
+                <div class="col-lg-3">
+                    <img  src="../static/images/sds_logo.png" alt="Skills Development Scotland Logo">
+                </div>
+                <div class="col-lg-3 col-lg-offset-4">
+                    <img class="eu_logo" src="../static/images/europe_scotland_funding.png"
+                alt= "European and Scotland Funded">
+                </div>
+            </div>
+            
+            <!--Begin Section A-->          
+            <h3 class="content_head">Graduate Apprenticeship Programme<br>Apprenticeship Evaluation</h3>
+            <h3 class="content_head">Section A - Personal Details</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="half_width">First Name(s)</th>
+                        <th class="half_width">Last Name(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="half_width">{{ studentInfo.firstName }}</td>
+                        <td class="half_width">{{ studentInfo.surname }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Please state the name of the University or College you are registered with</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Edinburgh Napier University</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Please state the GA course you are registered on</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ studentInfo.degree_link.degree_name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End Section A-->
+
+            <!--Begin Section B-->                   
+            <h3 class="content_head">Section B - Evaluation</h3>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Reference scale for answers to the following question: </th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="fifth-width">1 - Very dissatisfied</th>
+                        <th class="fifth-width">2 - Quite dissatisfied</th>
+                        <th class="fifth-width">3 - Neither satisfied nor dissatisfied</th>
+                        <th class="fifth-width">4 - Quite satisfied</th>
+                        <th class="fifth-width">5 - Very satisfied</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="sixty white_bg">On a scale 1 to 5, how satisfied or dissatisfied are you by your overall
+                            experience of your Graduate Apprenticeship so far? <span class="lighter_header">
+                            Please indicate the appropriate number.</span></th>
+                        <th class="eight white_bg">{{ evalInfo.overall_exp }}</th>
+                    </tr>
+                </thead>
+            </table>
+             <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th>Reference scale for answers to the following questions: </th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="fifth-width">1 - Completely disagree</th>
+                        <th class="fifth-width">2 - Somewhat disagree</th>
+                        <th class="fifth-width">3 - Neither agree nor disagree</th>
+                        <th class="fifth-width">4 - Somewhat agree</th>
+                        <th class="fifth-width">5 - Completely agree</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg"><p>Do you disagree or agree with the following statements? <span class="lighter_header">
+                            Please indicate the appropriate number, with 1 being completely disagree and 5 being completely agree.</span></p>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <!-- Question 1 -->
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="sixty">I am supported by my university/college in all areas of my graduate apprenticeship.</th>
+                        <th class="eight white_bg">{{ evalInfo.q_1 }}</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <!-- Comments: br used as height setting not workable (formatting). Adjust if necessary-->
+                        <th class="white_bg lighter_header">Comments:<br> {{ evalInfo.c_1 }}</th>
+                    </tr>
+                </thead>
+            </table>
+            
+            <!-- Question 2 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">I can access all on campus facilities, such as the library, support services, student union etc, at my 
+                                university/college.</th>
+                            <th class="eight white_bg">{{ evalInfo.q_2 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+                <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_2 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <!-- Question 3 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">I feel part of the wider learning community on campus.</th>
+                            <th class="eight white_bg">{{ evalInfo.q_3 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_3 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 4 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">My individual learning plan is responsive to the needs of my job role (for example, there is 
+                            minimal assessment during busy times at work.)</th>
+                            <th class="eight white_bg">{{ evalInfo.q_4 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_4 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 5 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">I feel supported by my fellow graduate apprentices.</th>
+                            <th class="eight white_bg">{{ evalInfo.q_5 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_5 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 6 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">I can use my learning from my graduate apprenticeship and apply it directly to my job role.</th>
+                            <th class="eight white_bg">{{ evalInfo.q_6 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_6 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 7 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">I am supported by my employer in all areas of my graduate apprenticeship. </th>
+                            <th class="eight white_bg">{{ evalInfo.q_7 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_7 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 8 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">I have access to relevant resources in my workplace to support my graduate apprenticeship.</th>
+                            <th class="eight white_bg">{{ evalInfo.q_8 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_8 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 9 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">My workplace mentor provides useful support in my graduate apprenticeship</th>
+                            <th class="eight white_bg">{{ evalInfo.q_9 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_9 }}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Question 10 -->
+            <table class="table table-responsive table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="sixty">My graduate apprenticeship is helping to improve my future employability.</th>
+                            <th class="eight white_bg">{{ evalInfo.q_10 }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="white_bg lighter_header">Comments:<br>{{ evalInfo.c_10 }}</th>
+                    </tr>
+                </thead>
+            </table>
+                
+
+            <!--End Section B-->
+         
+        </div><!-- close container -->                         
+
+{% endblock %}
+
+
